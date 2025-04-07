@@ -77,7 +77,7 @@ export default function Home() {
                     href={tool.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 font-medium mb-3 block"
+                    className="text-green-dark hover:text-blue-800 font-medium mb-3 block"
                   >
                     Bezoek website
                   </a>
@@ -86,7 +86,7 @@ export default function Home() {
                     {tool.subject.split(',').map((subject, idx) => (
                       <span 
                         key={idx} 
-                        className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
+                        className="bg-background text-green-dark px-3 py-1 rounded-full text-sm font-medium"
                       >
                         {subject.trim()}
                       </span>
@@ -147,7 +147,7 @@ export default function Home() {
                   href={tool.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 font-medium mb-3 block"
+                  className="text-green-dark hover:text-blue-800 font-medium mb-3 block"
                 >
                   Visit Website
                 </a>
@@ -156,7 +156,7 @@ export default function Home() {
                   {tool.subject.split(',').map((subject, idx) => (
                     <span 
                       key={idx} 
-                      className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
+                      className="bg-background text-green-dark px-3 py-1 rounded-full text-sm font-medium"
                     >
                       {subject.trim()}
                     </span>
@@ -177,7 +177,24 @@ export default function Home() {
             </div>
           ))}
         </div>
+
+        <div className="pt-8">
+          <a 
+            href="https://docs.google.com/spreadsheets/d/1ePvAJldz0LboCtMLtBsrgWPCb4cPb5qaPY8l_OXYxSM/edit?gid=0#gid=0" 
+            className="text-white hover:underline mb-2 inline-block bg-green-dark px-8 py-3 rounded-lg" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >Tool toevoegen</a>
+        </div>
+        
       </main>
+      <footer className="bg-green-dark text-white py-4">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-sm">
+            &copy; {new Date().getFullYear()} Devani. Alle rechten voorbehouden.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
