@@ -6,10 +6,15 @@ const SUBJECTS_RANGE = 'Blad2!A2:A';
 
 export async function GET() {
   try {
+    // Format the private key properly
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY
+      ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n')
+      : '';
+
     const auth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        private_key: privateKey,
       },
       scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
     });
@@ -52,6 +57,15 @@ export async function GET() {
     return Response.json({ tools, subjects });
   } catch (error) {
     console.error('Error fetching data from Google Sheets:', error);
-    return Response.json({ tools: [], subjects: [], error: error.message }, { status: 500 });
+    return Response.json({ 
+      tools: [], 
+      subjects: [], 
+      error: error.message,
+      details: {
+        hasClientEmail: !!process.env.GOOGLE_CLIENT_EMAIL,
+        hasPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+        privateKeyLength: process.env.GOOGLE_PRIVATE_KEY?.length
+      }
+    }, { status: 500 });
   }
 } 

@@ -165,6 +165,14 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <div>
+          <a 
+            href="https://docs.google.com/spreadsheets/d/1ePvAJldz0LboCtMLtBsrgWPCb4cPb5qaPY8l_OXYxSM/edit?gid=0#gid=0" 
+            className="text-blue-600 hover:underline mb-2 block bg-blue-100 px-8 py-3 rounded-lg" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >Tool toevoegen</a>
+        </div>
       </main>
     </div>
   );
