@@ -49,7 +49,13 @@ export async function GET() {
     // Extract unique subjects and remove empty values
     const subjects = [...new Set(subjectRows.flat().filter(Boolean))];
 
-    return Response.json({ tools, subjects });
+    return Response.json({ tools, subjects }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
+    });
   } catch (error) {
     console.error('Error fetching data from Google Sheets:', error);
     return Response.json({ 
