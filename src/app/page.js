@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from "next/image";
+import Tool from '../components/Tool';
 
 export default function Home() {
   const [tools, setTools] = useState([]);
@@ -70,38 +71,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-8 text-gray-800">Laatste toevoegingen</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {latestTools.map((tool, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-800">{tool.tool}</h3>
-                  <a 
-                    href={tool.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-green-dark hover:text-blue-800 font-medium mb-3 block"
-                  >
-                    Bezoek website
-                  </a>
-                  <p className="text-gray-600 mb-4 line-clamp-2">{tool.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {tool.subject.split(',').map((subject, idx) => (
-                      <span 
-                        key={idx} 
-                        className="bg-background text-green-dark px-3 py-1 rounded-full text-sm font-medium"
-                      >
-                        {subject.trim()}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-500">Added: {tool.date}</span>
-                    {tool.rating && (
-                      <span className="text-yellow-500">
-                        {'★'.repeat(tool.rating)}{'☆'.repeat(5 - tool.rating)}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <Tool key={index} tool={tool} />
             ))}
           </div>
         </div>
@@ -140,41 +110,7 @@ export default function Home() {
         {/* Tools Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredTools.map((tool, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="p-6">
-                <h2 className="text-xl font-semibold mb-3 text-gray-800">{tool.tool}</h2>
-                <a 
-                  href={tool.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-green-dark hover:text-blue-800 font-medium mb-3 block"
-                >
-                  Visit Website
-                </a>
-                <p className="text-gray-600 mb-4">{tool.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {tool.subject.split(',').map((subject, idx) => (
-                    <span 
-                      key={idx} 
-                      className="bg-background text-green-dark px-3 py-1 rounded-full text-sm font-medium"
-                    >
-                      {subject.trim()}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-500">Added by: {tool.addedBy}</span>
-                  <span className="text-sm text-gray-500">{tool.date}</span>
-                </div>
-                {tool.rating && (
-                  <div className="mt-3">
-                    <span className="text-yellow-500">
-                      {'★'.repeat(tool.rating)}{'☆'.repeat(5 - tool.rating)}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
+            <Tool key={index} tool={tool} />
           ))}
         </div>
 
