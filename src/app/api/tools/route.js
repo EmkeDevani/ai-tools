@@ -51,9 +51,8 @@ export async function GET() {
 
     return Response.json({ tools, subjects }, {
       headers: {
-        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
+        'Cache-Control': 'public, max-age=900',
+        'Expires': new Date(Date.now() + 900000).toUTCString()
       }
     });
   } catch (error) {
